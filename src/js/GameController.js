@@ -1,5 +1,7 @@
 import { characterGenerator, generateTeam } from './generators';
 import Team from './Team';
+import PositionedCharacter from './PositionedCharacter';
+import Character from './Character';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -9,13 +11,9 @@ export default class GameController {
 
   init() {
     this.gamePlay.drawUi('prairie');
-    const q = new Team();
-    const maxLevel = 5;
-    // const x = characterGenerator(q, maxLevel);
-    // x.next();
-    generateTeam(q.shuffle(), maxLevel, 10);
-
-    //  this.gamePlay.redrawPositions(x.next());
+    const z = new Team();
+    const x = generateTeam(z.allowedTypes, 10, 10);
+console.log(x)
     // TODO: add event listeners to gamePlay events
     // TODO: load saved stated from stateService
   }

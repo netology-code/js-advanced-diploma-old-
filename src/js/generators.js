@@ -9,17 +9,19 @@
 export function* characterGenerator(allowedTypes, maxLevel) {
   // eslint-disable-next-line no-plusplus
 
-  for (const item of allowedTypes) {
+  while (true) {
+    const item = allowedTypes[Math.floor(Math.random() * 6)];
     item.level = Math.floor(Math.random() * maxLevel) + 1;
-
     yield item;
   }
 }
 
 export function generateTeam(allowedTypes, maxLevel, characterCount) {
   const item = characterGenerator(allowedTypes, maxLevel);
+  const arr = [];
   for (let i = 0; i < characterCount; i++) {
-    console.log(item.next(), item.level);
-    // item.next();
+    arr[i] = item.next();
+   
   }
+  return arr;
 }
