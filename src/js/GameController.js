@@ -1,15 +1,27 @@
 import Team from './Team';
 import themes from './themes';
+import cursors from './cursors';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
     this.char = [];
-    this.state = { level: 0 };
+    this.state = {
+      
+    };
   }
 
   init() {
+    this.gamePlay.cellClickListeners = [];
+    this.gamePlay.cellEnterListeners = [];
+    this.gamePlay.cellLeaveListeners = [];
+   
+    
+    this.state = {
+      level: 0,
+      step: true,
+    };
     this.gamePlay.drawUi(`${Object.values(themes)[this.state.level]}`);
     this.char = new Team(5, 5).ranking();
 
@@ -36,11 +48,12 @@ export default class GameController {
         return true;
       } return false;
     }
+    
     if (this.char.find(x)) {
       if (this.state.index === index) {
         this.gamePlay.deselectCell(index);
         this.state.index = null;
-      } else if (this.state.index) {
+      } else if (this.state.index >= 0) {
         this.gamePlay.deselectCell(this.state.index);
         this.state.index = index;
         this.gamePlay.selectCell(index);
@@ -56,11 +69,19 @@ export default class GameController {
       if (el.position === index) {
         const message = `${String.fromCodePoint(0x1F396)} ${el.character.level} ${String.fromCodePoint(0x2694)} ${el.character.attack} ${String.fromCodePoint(0x1F6E1)} ${el.character.defence} ${String.fromCodePoint(0x2764)} ${el.character.health}`;
         this.gamePlay.showCellTooltip(message, index);
+        if (this.state.index &&   (el.character.type === 'bowman' || el.character.type === 'magician' || el.character.type === 'swordsman')) {
+          this.gamePlay.setCursor(cursors.pointer);
+        }
       }
     });
   }
 
   onCellLeave(index) {
     this.gamePlay.hideCellTooltip(index);
+    this.char.forEach((el) => {
+      if (this.state.index &&   !(el.character.type === 'bowman' || el.character.type === 'magician' || el.character.type === 'swordsman')) {
+        this.gamePlay.setCursor(cursors.auto);
+      }
+    });
   }
 }
