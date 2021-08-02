@@ -1,6 +1,11 @@
 export default class GameState {
+  constructor() {
+    this.state = {};
+  }
+
   static from(object) {
-    // TODO: create object
+    
+
     return null;
   }
 }

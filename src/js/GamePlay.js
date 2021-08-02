@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-alert */
 import { calcHealthLevel, calcTileType } from './utils';
 
 export default class GamePlay {
@@ -169,6 +171,7 @@ export default class GamePlay {
 
   onSaveGameClick(event) {
     event.preventDefault();
+
     this.saveGameListeners.forEach((o) => o.call(null));
   }
 
@@ -177,7 +180,7 @@ export default class GamePlay {
     this.loadGameListeners.forEach((o) => o.call(null));
   }
 
-  static showError(message) {
+  showError(message) {
     alert(message);
   }
 
