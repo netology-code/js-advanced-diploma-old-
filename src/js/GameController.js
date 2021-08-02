@@ -1,15 +1,16 @@
 import Team from './Team';
+import themes from './themes';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
     this.char = [];
-    this.state = {};
+    this.state = { level: 0 };
   }
 
   init() {
-    this.gamePlay.drawUi('prairie');
+    this.gamePlay.drawUi(`${Object.values(themes)[this.state.level]}`);
     this.char = new Team(5, 5).ranking();
 
     this.gamePlay.redrawPositions(this.char);

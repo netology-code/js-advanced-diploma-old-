@@ -4,8 +4,6 @@ export default class GameState {
   }
 
   static from(object) {
-    
-
     return null;
   }
 }
