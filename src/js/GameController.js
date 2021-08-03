@@ -68,9 +68,12 @@ export default class GameController {
       if (el.position === index) {
         const message = `${String.fromCodePoint(0x1F396)} ${el.character.level} ${String.fromCodePoint(0x2694)} ${el.character.attack} ${String.fromCodePoint(0x1F6E1)} ${el.character.defence} ${String.fromCodePoint(0x2764)} ${el.character.health}`;
         this.gamePlay.showCellTooltip(message, index);
-        if ( (el.character.type === 'bowman' || el.character.type === 'magician' || el.character.type === 'swordsman')) {
+        if (el.character.type === 'bowman' || el.character.type === 'magician' || el.character.type === 'swordsman') {
           this.gamePlay.setCursor(cursors.pointer);
         }
+      }
+      if (this.state.index) {
+        this.possibleMove(el.character.stepAttack, index);
       }
     });
   }
@@ -82,5 +85,11 @@ export default class GameController {
         this.gamePlay.setCursor(cursors.auto);
       }
     });
+  }
+
+  possibleMove(stepAttack, index) {
+    if ((index % 8) - stepAttack >= 0 && (index % 8) + stepAttack <= 8) {
+      
+    }
   }
 }
