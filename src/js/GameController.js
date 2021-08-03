@@ -49,10 +49,7 @@ export default class GameController {
     }
 
     if (this.char.find(x)) {
-      if (this.state.index === index) {
-        this.gamePlay.deselectCell(index);
-        this.state.index = null;
-      } else if (this.state.index >= 0) {
+      if (this.state.index >= 0) {
         this.gamePlay.deselectCell(this.state.index);
         this.state.index = index;
         this.gamePlay.selectCell(index);
@@ -89,7 +86,7 @@ export default class GameController {
 
   possibleMove(stepAttack, index) {
     if ((index % 8) - stepAttack >= 0 && (index % 8) + stepAttack <= 8) {
-      
+
     }
   }
 }
