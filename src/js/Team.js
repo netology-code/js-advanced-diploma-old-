@@ -28,14 +28,6 @@ export default class Team {
     return allowedTypes;
   }
 
-  // playerTeam() {
-  //   return this.shuffle(this.allowedTypesPlayer);
-  // }
-
-  // comTeam() {
-  //   return this.shuffle(this.allowedTypesCom);
-  // }
-
   playerPos() {
     return this.shuffle(this.allowedTypesPlayer.position);
   }
