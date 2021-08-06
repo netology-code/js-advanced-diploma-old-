@@ -18,7 +18,7 @@ export default class Team {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  shuffle(allowedTypes) {
+  static shuffle(allowedTypes) {
     // eslint-disable-next-line no-plusplus
     for (let i = allowedTypes.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -29,20 +29,20 @@ export default class Team {
   }
 
   playerPos() {
-    return this.shuffle(this.allowedTypesPlayer.position);
+    return Team.shuffle(this.allowedTypesPlayer.position);
   }
 
   comPos() {
-    return this.shuffle(this.allowedTypesCom.position);
+    return Team.shuffle(this.allowedTypesCom.position);
   }
 
   ranking() {
     this.playerPos();
     // eslint-disable-next-line max-len
-    const p = generateTeam(this.shuffle(this.allowedTypesPlayer), this.maxLevel, this.characterCount);
+    const p = generateTeam(Team.shuffle(this.allowedTypesPlayer), this.maxLevel, this.characterCount);
 
     this.comPos();
-    const c = generateTeam(this.shuffle(this.allowedTypesCom), this.maxLevel, this.characterCount);
+    const c = generateTeam(Team.shuffle(this.allowedTypesCom), this.maxLevel, this.characterCount);
 
     return [...p, ...c];
   }

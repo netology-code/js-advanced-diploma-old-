@@ -1,6 +1,6 @@
 import PositionedCharacter from './PositionedCharacter';
 /**
- * Generates random characters
+ *
  *
  * @param allowedTypes iterable of classes
  * @param maxLevel max character level
@@ -12,10 +12,8 @@ export function* positionGenerator(positions) {
   }
 }
 export function* characterGenerator(allowedTypes, maxLevel) {
-  // eslint-disable-next-line no-plusplus
-
   while (true) {
-    const item = allowedTypes[Math.floor(Math.random() * 3)];
+    const item = Object.create(allowedTypes[Math.floor(Math.random() * 3)]);
     item.level = Math.floor(Math.random() * maxLevel) + 1;
 
     yield item;

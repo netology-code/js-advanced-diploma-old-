@@ -6,5 +6,6 @@ export default class Bowman extends Character {
     this.attack = 25;
     this.defence = 25;
     this.stepAttack = 2;
+    this.stepMoves = 2;
   }
 }
